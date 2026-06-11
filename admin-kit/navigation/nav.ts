@@ -1,62 +1,62 @@
 import {
-  LogOut,
-  Settings,
-  UserRoundPen ,
-  Users2,
   FilePenLine,
+  LogOut,
   Receipt,
+  Settings,
+  UserRoundPen,
   Users,
+  Users2,
 } from "lucide-react";
 
+import { ROUTES } from "./routes";
 import type { NavItem } from "../shared/types";
 
 export const ADMIN_PANEL_NAV: NavItem[] = [
   {
-    href: "/D/Dashboard",
+    href: ROUTES.dashboard,
     label: "داشبورد",
     icon: FilePenLine,
   },
   {
-    href: "/D/Onsite-Registration",
+    href: ROUTES.onsiteRegistration,
     label: " ثبت نام حضوری",
     icon: UserRoundPen,
   },
   {
-    href: "/D/Karvan-reservations",
+    href: ROUTES.karvanReservations,
     label: "مدیریت رزرو ها",
     icon: Receipt,
   },
   {
-    href: "/D/Manage-Requests",
+    href: ROUTES.manageRequests,
     label: " مدیریت درخواست ها",
     icon: Receipt,
   },
   {
-    href: "/E/Manage-Karvan",
+    href: ROUTES.manageKarvan,
     label: " مدیریت کاروان‌ها",
-    icon: Users
+    icon: Users,
   },
   {
-    href: "/E/Manage-Users",
+    href: ROUTES.manageUsers,
     label: "مدیریت کاربران",
     icon: Users2,
   },
   {
-    href: "/E/Content-Management",
+    href: ROUTES.contentManagement,
     label: "مدیریت محتوا",
     icon: LogOut,
   },
   {
-    href: "/E/Reports",
+    href: ROUTES.reports,
     label: "گزارشات و آمار",
     icon: LogOut,
   },
   {
-    href: "/E/Settings",
+    href: ROUTES.settings,
     label: "تنظیمات",
-    icon: LogOut,
+    icon: Settings,
   },
-   
 ];
 
 /** @deprecated Use ADMIN_PANEL_NAV — kept for drop-in compatibility */
