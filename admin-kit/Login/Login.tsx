@@ -1,24 +1,103 @@
+"use client";
 
-import FormTextInput from "../ui/FormTextInput"
-import Button from "../ui/Button"
-function Login() {
+import { zodResolver } from "@hookform/resolvers/zod";
+import {  ShieldUser, User } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+
+import { ROUTES } from "@admin-kit/navigation/routes";
+import { zTextNoDigits } from "@admin-kit/schemas/formZodRules";
+import { useAuthStore } from "@admin-kit/shared/store/authStore";
+import Button from "@admin-kit/ui/Button";
+import FormTextInput from "@admin-kit/ui/FormTextInput";
+
+const loginSchema = z.object({
+  username: zTextNoDigits("نام کاربری"),
+  password: z.string().min(4, "رمز عبور باید حداقل ۴ کاراکتر باشد"),
+});
+
+type LoginFormValues = z.infer<typeof loginSchema>;
+
+const loginDefaultValues: LoginFormValues = {
+  username: "",
+  password: "",
+};
+
+type Props = {
+  className?: string;
+  disabled?: boolean;
+};
+
+export default function Login({ className, disabled = false }: Props) {
+  const router = useRouter();
+  const login = useAuthStore((s) => s.login);
+  const [error, setError] = useState<string | null>(null);
+
+  const { control, handleSubmit } = useForm<LoginFormValues>({
+    resolver: zodResolver(loginSchema),
+    defaultValues: loginDefaultValues,
+    mode: "onChange",
+  });
+
+  const onSubmit = handleSubmit((values) => {
+    const ok = login(values.username, values.password);
+    if (!ok) {
+      setError("نام کاربری یا رمز عبور نامعتبر است.");
+      return;
+    }
+    setError(null);
+    router.push(ROUTES.dashboard);
+    router.refresh();
+  });
+
   return (
-    <div className="flex flex-col items-center justify-center h-screen w-full max-w-[384px] h-full max-h-[380px] bg-white shoadow-md shadow-gray-300 rounded-2xl p-4">
-        <div className="flex flex-col items-center gap-2 ">
-<span className="text-2xl font-bold">ورود</span>
-<span className="text-sm text-gray-500">لطفا برای ورود به سامانه، اطلاعات خود را وارد کنید.</span>
-</div>
-<div className="flex flex-col items-center gap-2">
-<FormTextInput name="username" placeholder="نام کاربری" />
-<FormTextInput name="password" placeholder="رمز عبور" />
-</div>
-<div className="flex flex-col items-center gap-2">
-<Button type="submit" color="darkGreen" text="white" radius="md" size="md" width="auto">ورود</Button>
-</div>
+    <form
+      onSubmit={onSubmit}
+      className={`flex w-full max-w-[384px] flex-col items-center justify-center gap-6 rounded-2xl bg-white p-3 shadow-md shadow-gray-300 ${className ?? ""}`}
+    >
+      <div className="flex flex-col items-center gap-4 p-2 text-gray-500 text-center">
+        <span className="text-2xl font-bold text-gray-500">ورود</span>
+        <span className="text-sm text-gray-500">
+          لطفا برای ورود به سامانه، اطلاعات خود را وارد کنید.
+        </span>
+      </div>
 
-        </div>
-    
-  )
+      <div className="flex w-full flex-col items-center gap-3">
+        <FormTextInput
+          name="username"
+          control={control}
+          placeholder="نام کاربری"
+          rightIcon={User}
+          disabled={disabled}
+          valueFilter="noDigits"
+        />
+
+        <FormTextInput
+          name="password"
+          control={control}
+          placeholder="رمز عبور"
+          rightIcon={ShieldUser}
+          disabled={disabled}
+          inputType="password"
+        />
+
+        {error ? <p className="w-full text-center text-xs text-red-500">{error}</p> : null}
+      </div>
+
+      <Button
+        type="submit"
+        color="darkGreen"
+        text="white"
+        radius="md"
+        size="twoxl"
+        width="xl"
+        disabled={disabled}
+        className="w-full"
+      >
+        ورود
+      </Button>
+    </form>
+  );
 }
-
-export default Login
