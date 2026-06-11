@@ -10,15 +10,15 @@ import {
   type Path,
   type RegisterOptions,
 } from "react-hook-form";
-import { isControlledInputValid } from "@admin-kit/shared/lib/inputValidation";
+import { isControlledInputValid } from "../shared/lib/inputValidation";
 
-import { cn } from "@admin-kit/shared/lib/utils";
+import { cn } from "../shared/lib/utils";
 import {
   filterPassportId,
   normalizeDigitsInput,
   stripDigitsFromText,
-} from "@admin-kit/shared/lib/formInputFilters";
-import { InputValidTick } from "@admin-kit/ui/InputValidTick";
+} from "../shared/lib/formInputFilters";
+import { InputValidTick } from "./InputValidTick";
 
 type ValueFilterKind = "none" | "digits" | "noDigits" | "passportId";
 
@@ -53,6 +53,7 @@ type FormTextInputProps<T extends FieldValues> = NativeInputProps & {
   showCounter?: boolean;
   maxLength?: number;
   valueFilter?: ValueFilterKind;
+  inputType?: InputHTMLAttributes<HTMLInputElement>["type"];
 };
 
 export default function FormTextInput<T extends FieldValues>({
@@ -81,6 +82,7 @@ export default function FormTextInput<T extends FieldValues>({
   showCounter = false,
   maxLength,
   valueFilter = "none",
+  inputType: inputTypeProp,
   className,
   disabled,
   ...rest
@@ -120,7 +122,8 @@ export default function FormTextInput<T extends FieldValues>({
     return raw;
   };
 
-  const inputType = valueFilter === "digits" ? "tel" : "text";
+  const inputType =
+    inputTypeProp ?? (valueFilter === "digits" ? "tel" : "text");
   const inputMode =
     valueFilter === "digits"
       ? ("numeric" as const)

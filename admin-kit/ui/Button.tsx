@@ -1,5 +1,5 @@
 "use client";
-import { cn } from "@admin-kit/shared/lib/utils";
+import { cn } from "../shared/lib/utils";
 
 const buttonstyles = {
   darkGreen: "bg-[#175E47] hover:bg-[#1F7E5F] text-white border-transparent",

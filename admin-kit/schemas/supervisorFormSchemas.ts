@@ -7,10 +7,7 @@ import {
   zTextNoDigits,
 } from "@admin-kit/schemas/formZodRules";
 
-/** Re-export: ASCII digits only + “الزامی” when empty (use for custom fields). */
-export { zDigitsOnly, zTextNoDigits } from "@admin-kit/schemas/formZodRules";
 
-/** Required trimmed non-empty string (any characters). */
 export const required = (label: string) =>
   z.string().trim().min(1, `${label} الزامی است`);
 

@@ -3,7 +3,7 @@ import {
   zIranMobile,
   zIranPhoneDigits,
   zTextNoDigits,
-} from "@admin-kit/schemas/formZodRules";
+} from "./formZodRules";
 
 export const karvanInformationSchema = z.object({
   caravanName: zTextNoDigits("نام کاروان"),
