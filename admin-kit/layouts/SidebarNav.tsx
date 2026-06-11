@@ -3,10 +3,9 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { LucideIcon } from "lucide-react";
-
+import Image from "next/image";
 import { cn } from "../shared/lib/utils";
 import type { NavItem } from "../shared/types";
-import Image from "next/image";
 
 function isLucideOrReactComponent(icon: NavItem["icon"]): icon is LucideIcon {
   if (typeof icon === "function") return true;
@@ -27,7 +26,7 @@ function NavSidebarGlyph({
 }) {
   if (isLucideOrReactComponent(icon)) {
     const Icon = icon;
-    return <Icon className={className} aria-hidden />;
+    return <Icon className={className} aria-hidden stroke="#D8B648" />;
   }
   if (
     icon &&
@@ -55,13 +54,13 @@ type Props = {
   className?: string;
 };
 
-const navButtonClass =
-  "flex h-14 w-[236px] max-w-full  items-center gap-3 rounded-xl py-4 ps-5 pe-4 text-sm font-medium transition-colors outline-none";
+const navButtonInnerClass =
+  "sidebar-nav-link flex h-14 items-center gap-3 py-4 ps-5 pe-6 text-sm font-medium outline-none";
 
 export function SidebarNav({ items, onNavigate, className }: Props) {
   return (
     <nav
-      className={cn("flex w-59 max-w-full flex-col gap-2", className)}
+      className={cn("flex w-full flex-col gap-2 overflow-visible pr-4", className)}
       aria-label="منوی پنل کاربری"
     >
       {items.map((item) => (
@@ -80,31 +79,34 @@ function SidebarNavLink({
   const pathname = usePathname();
   const active =
     pathname === href ||
-    (href !== "/UserPanel" && pathname.startsWith(`${href}/`));
+    (href !== "/D/Dashboard" && pathname.startsWith(`${href}/`));
 
   return (
-    <Link
-      href={href}
-      onClick={onNavigate}
-      className={cn(
-        navButtonClass,
-        "group",
-        active
-          ? "bg-white text-[#175E47]"
-          : "text-white hover:bg-white/15 focus-visible:bg-white focus-visible:text-[#175E47]",
-      )}
-    >
-      <NavSidebarGlyph
-        icon={Icon}
+    <div className="sidebar-nav-item overflow-visible">
+      <Link
+        href={href}
+        onClick={onNavigate}
         className={cn(
-          "size-5 shrink-0",
+          navButtonInnerClass,
+          "group",
+          active && "sidebar-nav-link--active",
           active
             ? "text-[#175E47]"
-            : "text-white group-focus-visible:text-[#175E47]",
+            : "text-white focus-visible:text-[#175E47]",
         )}
-      />
-      <span className="min-w-0 flex-1 text-right">{label}</span>
-    </Link>
+      >
+        <NavSidebarGlyph
+          icon={Icon}
+          className={cn(
+            "size-5 shrink-0",
+            active
+              ? "text-[#175E47]"
+              : "text-white group-focus-visible:text-[#175E47]",
+          )}
+        />
+        <span className="min-w-0 flex-1 text-right">{label}</span>
+      </Link>
+    </div>
   );
 }
 
@@ -122,20 +124,21 @@ export function SidebarActionButton({
   className,
 }: SidebarActionButtonProps) {
   return (
-    <button
-      type="button"
-      onClick={onClick}
-      className={cn(
-        navButtonClass,
-        "group text-white hover:bg-white/15 focus-visible:bg-white focus-visible:text-[#175E47]",
-        className,
-      )}
-    >
-      <NavSidebarGlyph
-        icon={Icon}
-        className="size-5 shrink-0 text-white group-focus-visible:text-[#175E47]"
-      />
-      <span className="min-w-0 flex-1 text-right">{label}</span>
-    </button>
+    <div className={cn("sidebar-nav-item overflow-visible pr-4", className)}>
+      <button
+        type="button"
+        onClick={onClick}
+        className={cn(
+          navButtonInnerClass,
+          "group text-white focus-visible:text-[#175E47]",
+        )}
+      >
+        <NavSidebarGlyph
+          icon={Icon}
+          className="size-5 shrink-0 text-white group-focus-visible:text-[#175E47]"
+        />
+        <span className="min-w-0 flex-1 text-right">{label}</span>
+      </button>
+    </div>
   );
 }

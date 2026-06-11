@@ -8,7 +8,7 @@ import { useState } from "react";
 import type { ReactNode } from "react";
 import { ROUTES } from "@admin-kit/navigation/routes";
 import { cn } from "@admin-kit/shared/lib/utils";
-import { USER_PANEL_NAV } from "@admin-kit/navigation/nav";
+import { ADMIN_PANEL_NAV } from "@admin-kit/navigation/nav";
 import { useAuthStore } from "@admin-kit/shared/store/authStore";
 import { SidebarNav } from "@admin-kit/layouts/SidebarNav";
 import { NavBar } from "@admin-kit/layouts/NavBar";
@@ -17,20 +17,20 @@ type Props = {
 };
 
 const sidebarSurfaceClass =
-  "flex w-[268px] max-w-[88vw] shrink-0 flex-col gap-10 rounded-tl-2xl rounded-bl-2xl bg-[#71A792] px-4 py-10";
+  "flex w-[268px] max-w-[88vw] shrink-0 flex-col gap-10 rounded-tl-2xl rounded-bl-2xl bg-[#4C7A68] py-10";
 
 export function PanelShell({ children }: Props) {
   const router = useRouter();
   const user = useAuthStore((s) => s.user);
-  const logout = useAuthStore((s) => s.logout);
+  // const logout = useAuthStore((s) => s.logout);
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  const handleLogout = () => {
-    logout();
-    setMobileOpen(false);
-    router.push(ROUTES.home);
-    router.refresh();
-  };
+  // const handleLogout = () => {
+  //   logout();
+  //   setMobileOpen(false);
+  //   router.push(ROUTES.home);
+  //   router.refresh();
+  // };
 
   const closeMobile = () => setMobileOpen(false);
 
@@ -61,8 +61,8 @@ export function PanelShell({ children }: Props) {
         </Link>
       </div>
 
-      <div className="min-h-0 flex-1 overflow-y-auto bg-[#71A792]">
-        <SidebarNav items={USER_PANEL_NAV} onNavigate={closeMobile} />
+      <div className="min-h-0 flex-1 overflow-x-visible overflow-y-auto w-full">
+        <SidebarNav items={ADMIN_PANEL_NAV} onNavigate={closeMobile} />
       </div>
     </>
   );
