@@ -1,5 +1,5 @@
 import { CircleCheck } from "lucide-react";
-import { cn } from "@admin-kit/shared/lib/utils";
+import { cn} from "../shared/lib/utils"
 
 type Props = {
   show: boolean;
