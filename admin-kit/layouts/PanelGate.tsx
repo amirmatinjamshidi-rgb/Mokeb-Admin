@@ -10,8 +10,8 @@ type Props = {
   children: ReactNode;
 };
 
-/** Set to `true` to send unauthenticated users to the login page again. */
-const LOGIN_REQUIRED = false;
+
+const LOGIN_REQUIRED = true;
 
 export function PanelGate({ children }: Props) {
   const router = useRouter();

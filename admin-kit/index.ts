@@ -10,7 +10,7 @@ export {
 
 // Navigation
 export { ROUTES, mainNavItems } from "./navigation/routes";
-export { ADMIN_PANEL_NAV, USER_PANEL_NAV } from "./navigation/nav";
+export { ADMIN_PANEL_NAV } from "./navigation/nav";
 
 // UI primitives
 export { default as Button } from "./ui/Button";
@@ -18,6 +18,19 @@ export { IconLabelInput } from "./ui/IconLabelInput";
 export { InputValidTick } from "./ui/InputValidTick";
 export { FloatingLabelSearch } from "./ui/FloatingLabelSearch";
 export { default as FormTextInput } from "./ui/FormTextInput";
+export {
+  DateCarousel,
+  type DateCarouselProps,
+  type DateCarouselStats,
+} from "./ui/DateCarousel";
+export {
+  DATE_CAROUSEL_DAYS,
+  generateNextDays,
+  formatCarouselDateLabel,
+  startOfDay,
+  isSameDay,
+  toDateKey,
+} from "./ui/dateCarouselUtils";
 
 // Dropdowns
 export { FilterSelect } from "./dropdowns/FilterSelect";
