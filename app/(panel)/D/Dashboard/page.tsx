@@ -14,3 +14,7 @@ export default function DashboardPage() {
     />
   );
 }
+//  <div className="flex justify-between">
+//    <DashboardCapacityStatisticsChart />
+//    <DashboardAreaChart />
+//  </div>;

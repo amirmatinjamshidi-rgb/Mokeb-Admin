@@ -29,7 +29,7 @@ export type DateCarouselProps = {
 };
 
 // Adjusted to handle larger number text without wrapping issues
-const SLIDE_SIZE = 155; 
+const SLIDE_SIZE = 155;
 
 const ARROW_CLASS =
   "flex h-[104px] w-12 shrink-0 items-center justify-center bg-[#F5F9F6] text-[#61756F] transition-colors hover:bg-[#E8F0EC] disabled:cursor-not-allowed disabled:opacity-40";
@@ -74,18 +74,30 @@ function DateCarouselItem({
       )}
 
       {/* Row 1: Date Label */}
-      <span className={cn("whitespace-nowrap text-sm font-semibold tracking-wide", mutedTextClass)}>
+      <span
+        className={cn(
+          "whitespace-nowrap text-sm font-semibold tracking-wide",
+          mutedTextClass,
+        )}
+      >
         {formatCarouselDateLabel(date)}
       </span>
 
       {/* Row 2: Metrics Layout */}
-      <div className="flex w-full items-center justify-between px-0.5" dir="rtl">
+      <div
+        className="flex w-full items-center justify-between px-0.5"
+        dir="rtl"
+      >
         {/* Parentheses with increased text size (text-base) */}
         <div className="flex items-center gap-1 text-base font-bold" dir="ltr">
           <span className={cn("text-sm font-normal", mutedTextClass)}>(</span>
-          <span className="text-[#8F2346]">{toPersianDigits(stats.remaining)}</span>
+          <span className="text-[#8F2346]">
+            {toPersianDigits(stats.remaining)}
+          </span>
           <span className={cn("text-sm font-normal", mutedTextClass)}>,</span>
-          <span className="text-[#5193E2]">{toPersianDigits(stats.reserved)}</span>
+          <span className="text-[#5193E2]">
+            {toPersianDigits(stats.reserved)}
+          </span>
           <span className={cn("text-sm font-normal", mutedTextClass)}>)</span>
         </div>
 
