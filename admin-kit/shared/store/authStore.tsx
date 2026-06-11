@@ -3,16 +3,16 @@ import { persist } from "zustand/middleware";
 import type { UserProfile } from "@admin-kit/shared/types";
 type AuthState = {
   user: UserProfile | null;
-  /** Mock login: any Iranian mobile + password length ≥ 4 */
-  login: (phone: string, password: string) => boolean;
+  /** Mock login: username + password length ≥ 4 */
+  login: (username: string, password: string) => boolean;
   logout: () => void;
   updateProfile: (patch: Partial<Omit<UserProfile, "id">>) => void;
 };
 
-const defaultUser = (phone: string): UserProfile => ({
+const defaultUser = (username: string): UserProfile => ({
   id: "u-1",
-  name: "زائر گرامی",
-  phone,
+  name: username,
+  phone: "",
   email: "",
 });
 
@@ -20,12 +20,12 @@ export const useAuthStore = create<AuthState>()(
   persist(
     (set, get) => ({
       user: null,
-      login: (phone, password) => {
-        const normalized = phone.replace(/\s/g, "");
-        if (!/^09\d{9}$/.test(normalized) || password.length < 4) {
+      login: (username, password) => {
+        const name = username.trim();
+        if (name.length < 1 || password.length < 4) {
           return false;
         }
-        set({ user: defaultUser(normalized) });
+        set({ user: defaultUser(name) });
         return true;
       },
       logout: () => set({ user: null }),
