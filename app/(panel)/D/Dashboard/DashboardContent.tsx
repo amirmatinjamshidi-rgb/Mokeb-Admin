@@ -11,10 +11,10 @@ export function DashboardContent() {
       <DashboardStatCards />
 
       <div className="flex w-full flex-col gap-6 lg:flex-row lg:items-stretch">
-        <div className="min-w-0 lg:flex-[7]">
+        <div className="min-w-0 w-full lg:flex-[7]">
           <DashboardCapacityStatisticsChart />
         </div>
-        <div className="min-w-0 lg:flex-[13]">
+        <div className="min-w-0 w-full lg:flex-[13]">
           <DashboardAreaChart />
         </div>
       </div>

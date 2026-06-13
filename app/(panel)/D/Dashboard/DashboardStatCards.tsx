@@ -63,7 +63,7 @@ function StatCard({
 
   return (
     <article
-      className="flex h-[164px] w-[244px] shrink-0 flex-col gap-4 rounded-2xl border border-gray-100 bg-white px-5 py-4 shadow-md"
+      className="flex h-[164px] w-full flex-col gap-4 rounded-2xl border border-gray-100 bg-white px-5 py-4 shadow-md"
       dir="rtl"
     >
       <div className="flex items-start justify-between gap-2">
@@ -104,7 +104,7 @@ export function DashboardStatCards() {
 
   return (
     <div
-      className="flex w-full flex-wrap items-stretch justify-between gap-4"
+      className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4"
       dir="rtl"
       aria-label={`آمار داشبورد برای ${toDateKey(selectedDate)}`}
     >
