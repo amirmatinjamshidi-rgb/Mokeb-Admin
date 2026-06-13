@@ -6,9 +6,11 @@ import { Eye, Pencil, Search, Trash2 } from "lucide-react";
 import {
   FilterBox,
   FloatingLabelSearch,
+  PageToolbar,
   Table,
   TablePagination,
   TableRowActionsMenu,
+  pageToolbarActionClass,
   usePagination,
   type Column,
   type FilterGroup,
@@ -219,24 +221,30 @@ export function ManageKarvanContent({ users = MOCK_KARVAN_USERS }: Props) {
 
   return (
     <div className="flex w-full flex-col gap-12">
-      <div className="flex w-full items-stretch gap-4">
-        <FloatingLabelSearch
-          id="karvan-user-search"
-          label="جستجو"
-          value={search}
-          onChange={setSearch}
-          icon={<Search className="size-5" aria-hidden />}
-          containerClassName="min-w-0 flex-[2] shadow-sm shadow-gray-300 border-white"
-        />
-
-        <button
-          type="button"
-          onClick={() => setFiltersOpen(true)}
-          className="flex h-12 min-w-0 flex-1 items-center justify-center rounded-lg border border-[#175E47] bg-white text-sm font-semibold text-[#175E47] transition-colors hover:bg-[#F5F9F6]"
-        >
-          فیلتر
-        </button>
-      </div>
+      <PageToolbar
+        search={
+          <FloatingLabelSearch
+            id="karvan-user-search"
+            label="جستجو"
+            value={search}
+            onChange={setSearch}
+            icon={<Search className="size-5" aria-hidden />}
+            containerClassName="w-full shadow-sm shadow-gray-300 border-white"
+          />
+        }
+        actions={
+          <button
+            type="button"
+            onClick={() => setFiltersOpen(true)}
+            className={cn(
+              pageToolbarActionClass,
+              "border border-[#175E47] bg-white text-[#175E47] hover:bg-[#F5F9F6]",
+            )}
+          >
+            فیلتر
+          </button>
+        }
+      />
 
       <Table data={tableRows} columns={columns} size="lg" className="w-full" />
 
