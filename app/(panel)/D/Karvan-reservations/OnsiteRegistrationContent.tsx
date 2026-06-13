@@ -9,9 +9,11 @@ import {
   EntryExitTabs,
   FilterBox,
   FloatingLabelSearch,
+  PageToolbar,
   Table,
   TablePagination,
   TableRowActionsMenu,
+  pageToolbarActionClass,
   toPersianDigits,
   usePagination,
   type Column,
@@ -366,38 +368,45 @@ export function OnsiteRegistrationContent() {
   };
 
   const actionButtonClass =
-    "flex h-12 min-w-0 flex-1 items-center justify-center rounded-lg border text-sm font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-50";
+    "flex h-12 w-full min-w-0 sm:flex-1 items-center justify-center rounded-lg border text-sm font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-50";
 
   return (
     <div className="flex w-full flex-col gap-12">
       <EntryExitTabs value={tab} onValueChange={setTab} />
 
       <div className="flex w-full flex-col gap-4">
-        <div className="flex w-full items-stretch gap-4">
-          <FloatingLabelSearch
-            id="onsite-supervisor-search"
-            label="جستجو نام سرپرست یا کد رزرو"
-            value={search}
-            onChange={setSearch}
-            icon={<Search className="size-5" aria-hidden />}
-            containerClassName="min-w-0 flex-[2] shadow-sm shadow-gray-300 border-white"
-          />
+        <PageToolbar
+          search={
+            <FloatingLabelSearch
+              id="onsite-supervisor-search"
+              label="جستجو نام سرپرست یا کد رزرو"
+              value={search}
+              onChange={setSearch}
+              icon={<Search className="size-5" aria-hidden />}
+              containerClassName="w-full shadow-sm shadow-gray-300 border-white"
+            />
+          }
+          actions={
+            <button
+              type="button"
+              onClick={() => setFiltersOpen(true)}
+              className={cn(
+                pageToolbarActionClass,
+                "border border-[#175E47] bg-white text-[#175E47] hover:bg-[#F5F9F6]",
+              )}
+            >
+              فیلتر
+            </button>
+          }
+        />
 
-          <button
-            type="button"
-            onClick={() => setFiltersOpen(true)}
-            className="flex h-12 min-w-0 flex-1 items-center justify-center rounded-lg border border-[#175E47] bg-white text-sm font-semibold text-[#175E47] transition-colors hover:bg-[#F5F9F6]"
-          >
-            فیلتر
-          </button>
-        </div>
-
-        <div className="flex w-full items-stretch gap-4">
+        <div className="flex w-full flex-col gap-4 sm:flex-row sm:items-stretch">
           <button
             type="button"
             disabled={!hasSelection}
             className={cn(
               actionButtonClass,
+              "w-full sm:flex-1",
               "border-[#D8B648] bg-white text-[#D8B648] hover:bg-[#FFFBF0]",
             )}
             onClick={() => console.log("register delay", [...selectedIds])}
