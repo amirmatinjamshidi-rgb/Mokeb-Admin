@@ -1,7 +1,9 @@
 "use client";
 
-import { Bell, Bolt, Menu, Search } from "lucide-react";
+import { Bell, Bolt, Menu } from "lucide-react";
 import Image from "next/image";
+
+import { NavbarSearchField } from "@admin-kit/ui/NavbarSearchField";
 
 type Props = {
   userName?: string;
@@ -19,33 +21,29 @@ export function NavBar({
   return (
     <div
       dir="rtl"
-      className="sticky top-0 z-30 flex h-16 w-full items-center justify-between rounded-tl-2xl rounded-tr-2xl bg-white px-4 shadow-xs shadow-gray-300 sm:px-10"
+      className="sticky top-0 z-30 flex h-16 w-full items-center justify-between gap-4 rounded-tl-2xl rounded-tr-2xl bg-white px-4 shadow-xs shadow-gray-300 sm:px-8 lg:h-[72px] lg:px-10"
     >
-      <div className="flex min-w-0 flex-1 items-center gap-3 sm:gap-4">
-        <button
-          type="button"
-          className="rounded-lg p-2 text-[#61756F] transition-colors hover:bg-[#F5F9F6] lg:hidden"
-          aria-label={menuOpen ? "بستن منو" : "باز کردن منو"}
-          aria-expanded={menuOpen}
-          onClick={onMenuToggle}
-        >
-          <Menu className="size-5" aria-hidden />
-        </button>
+      <button
+        type="button"
+        className="shrink-0 rounded-lg p-2 text-[#61756F] transition-colors hover:bg-[#F5F9F6] lg:hidden"
+        aria-label={menuOpen ? "بستن منو" : "باز کردن منو"}
+        aria-expanded={menuOpen}
+        onClick={onMenuToggle}
+      >
+        <Menu className="size-5" aria-hidden />
+      </button>
 
-        <div className="relative min-w-0 flex-1 max-w-md cursor-pointer">
-          <input
-            type="search"
-            placeholder="جستجو"
-            className="w-full cursor-pointer rounded-xl border py-2.5 pr-14 pl-10 text-gray-500"
-          />
-          <Search className="absolute top-3 right-4 size-5 text-gray-500" />
-        </div>
+      <div className="hidden min-w-0 flex-1 lg:block lg:max-w-md">
+        <NavbarSearchField />
       </div>
 
-      <div className="flex shrink-0 items-center gap-x-4 sm:gap-x-7">
-        <Bolt stroke="#61756F" className="hidden sm:block" />
-        <Bell className="hidden cursor-pointer text-[#61756F] sm:block" />
-        <div className="flex items-center gap-x-3">
+      <div className="flex shrink-0 items-center gap-x-3 sm:gap-x-5 lg:gap-x-7">
+        <Bolt stroke="#61756F" className="size-5 shrink-0" aria-hidden />
+        <Bell
+          className="size-5 shrink-0 cursor-pointer text-[#61756F]"
+          aria-hidden
+        />
+        <div className="flex items-center gap-x-2 sm:gap-x-3">
           <p className="hidden text-xs text-gray-500 sm:block">{userName}</p>
           <Image
             src={avatarSrc}
