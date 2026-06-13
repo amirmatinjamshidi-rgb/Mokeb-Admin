@@ -21,21 +21,21 @@ export function PanelPageShell({
     <section
       dir="rtl"
       className={cn(
-        "flex w-full flex-col gap-4",
-        underCarousel ? "px-0 pt-0 pb-0" : "px-6 pt-6 pb-6",
+        "flex w-full flex-col",
+        underCarousel ? "gap-8 px-0 pt-2 pb-0" : "gap-10 px-4 pt-8 pb-8 sm:px-6 sm:pt-10 sm:pb-10",
         className,
       )}
     >
-     
-
-      <h2 className="flex items-center gap-3 text-2xl font-bold leading-8 text-gray-500">
+      <h2 className="flex items-center gap-3 text-2xl font-bold leading-9 text-gray-500 sm:text-[1.75rem] sm:leading-10">
         {icon}
         <span>{title}</span>
       </h2>
 
-      {children}
+      {children ? (
+        <div className="flex w-full flex-col gap-10 sm:gap-12">{children}</div>
+      ) : null}
     </section>
   );
 }
 
-export const panelPageIconClass = "size-6 shrink-0 stroke-gray";
+export const panelPageIconClass = "size-7 shrink-0 stroke-gray sm:size-8";

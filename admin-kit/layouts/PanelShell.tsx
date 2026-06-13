@@ -11,13 +11,14 @@ import { ADMIN_PANEL_NAV } from "@admin-kit/navigation/nav";
 import { useAuthStore } from "@admin-kit/shared/store/authStore";
 import { SidebarNav } from "@admin-kit/layouts/SidebarNav";
 import { NavBar } from "@admin-kit/layouts/NavBar";
+import { NavbarSearchField } from "@admin-kit/ui/NavbarSearchField";
 
 type Props = {
   children: ReactNode;
 };
 
 const sidebarSurfaceClass =
-  "flex w-[268px] max-w-[88vw] shrink-0 flex-col gap-10 rounded-tl-2xl rounded-bl-2xl bg-[#4C7A68] py-10";
+  "flex w-[268px] max-w-[88vw] shrink-0 flex-col gap-12 rounded-tl-2xl rounded-bl-2xl bg-[#4C7A68] py-10";
 
 export function PanelShell({ children }: Props) {
   const user = useAuthStore((s) => s.user);
@@ -50,6 +51,13 @@ export function PanelShell({ children }: Props) {
             </p>
           </div>
         </Link>
+      </div>
+
+      <div className="w-full px-5 lg:hidden">
+        <NavbarSearchField
+          inputClassName="border-white/20 bg-white/10 text-white placeholder:text-white/70 focus:border-white/40"
+          iconClassName="text-white/80"
+        />
       </div>
 
       <div className="min-h-0 w-full flex-1 overflow-x-visible overflow-y-auto">
