@@ -58,8 +58,9 @@ const DashboardAreaChart = ({ isAnimationActive = true }) => {
           </select>
         </div>
       </div>
-      <div className="w-187.5 mt-6">
-        <AreaChart
+      <div className="mt-6 w-full overflow-x-auto">
+        <div className="min-w-[640px]">
+          <AreaChart
           style={{
             width: "100%",
             maxWidth: "750px",
@@ -114,6 +115,7 @@ const DashboardAreaChart = ({ isAnimationActive = true }) => {
           />
           <RechartsDevtools />
         </AreaChart>
+        </div>
       </div>
       <div className="flex justify-center gap-x-8 mt-10">
         <div className="flex items-center gap-x-3">
