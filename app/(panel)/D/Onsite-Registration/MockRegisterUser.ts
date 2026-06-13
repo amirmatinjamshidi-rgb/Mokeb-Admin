@@ -1,0 +1,58 @@
+import type { RegisterUser } from "./registerUserTypes";
+
+export const MOCK_REGISTER_USERS: RegisterUser[] = [
+  {
+    id: 1,
+    classLabel: "1",
+    gender: "آقایان",
+    totalCapacity: 100,
+    registeredCapacity: 30,
+    remainingCapacity: 70,
+    status: "ظرفیت موجود",
+  },
+  {
+    id: 2,
+    classLabel: "2",
+    gender: "بانوان",
+    totalCapacity: 80,
+    registeredCapacity: 60,
+    remainingCapacity: 20,
+    status: "در حال تکمیل",
+  },
+  {
+    id: 3,
+    classLabel: "3",
+    gender: "آقایان",
+    totalCapacity: 50,
+    registeredCapacity: 50,
+    remainingCapacity: 0,
+    status: "تکمیل",
+  },
+  {
+    id: 4,
+    classLabel: "4",
+    gender: "بانوان",
+    totalCapacity: 120,
+    registeredCapacity: 40,
+    remainingCapacity: 80,
+    status: "ظرفیت موجود",
+  },
+  {
+    id: 5,
+    classLabel: "5",
+    gender: "آقایان",
+    totalCapacity: 60,
+    registeredCapacity: 45,
+    remainingCapacity: 15,
+    status: "در حال تکمیل",
+  },
+  {
+    id: 6,
+    classLabel: "6",
+    gender: "بانوان",
+    totalCapacity: 90,
+    registeredCapacity: 90,
+    remainingCapacity: 0,
+    status: "تکمیل",
+  },
+];
