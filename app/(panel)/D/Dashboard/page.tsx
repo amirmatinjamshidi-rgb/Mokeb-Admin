@@ -5,16 +5,16 @@ import {
   panelPageIconClass,
 } from "../../_components/PanelPageShell";
 
+import { DashboardContent } from "./DashboardContent";
+
 export default function DashboardPage() {
   return (
     <PanelPageShell
       underCarousel
       title="داشبورد"
       icon={<FilePenLine className={panelPageIconClass} aria-hidden />}
-    />
+    >
+      <DashboardContent />
+    </PanelPageShell>
   );
 }
-//  <div className="flex justify-between">
-//    <DashboardCapacityStatisticsChart />
-//    <DashboardAreaChart />
-//  </div>;
