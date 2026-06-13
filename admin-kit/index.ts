@@ -17,6 +17,8 @@ export { default as Button } from "./ui/Button";
 export { IconLabelInput } from "./ui/IconLabelInput";
 export { InputValidTick } from "./ui/InputValidTick";
 export { FloatingLabelSearch } from "./ui/FloatingLabelSearch";
+export { PageToolbar, pageToolbarActionClass } from "./ui/PageToolbar";
+export { NavbarSearchField } from "./ui/NavbarSearchField";
 export { default as FormTextInput } from "./ui/FormTextInput";
 export {
   FilterBox,
