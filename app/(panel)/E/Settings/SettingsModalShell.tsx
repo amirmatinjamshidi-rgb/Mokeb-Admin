@@ -58,7 +58,9 @@ export function SettingsModalShell({
 
         {children}
 
-        <div className="flex flex-col gap-2 sm:flex-row sm:gap-2">{footer}</div>
+        <div className="flex flex-col gap-2 sm:flex-row sm:gap-2 [&>button]:w-full [&>button]:sm:flex-1">
+          {footer}
+        </div>
       </div>
     </div>
   );
