@@ -7,8 +7,10 @@ import type { PilgrimFormValues } from "@admin-kit/schemas/supervisorFormSchemas
 import {
   FilterBox,
   FloatingLabelSearch,
+  PageToolbar,
   Table,
   TablePagination,
+  pageToolbarActionClass,
   usePagination,
   type Column,
   type FilterGroup,
@@ -234,32 +236,44 @@ export function OnsiteContent({ users: initialUsers = MOCK_REGISTER_USERS }: Pro
 
   return (
     <div className="flex w-full flex-col gap-12">
-      <div className="flex w-full items-stretch gap-4">
-        <FloatingLabelSearch
-          id="onsite-register-search"
-          label="جستجو"
-          value={search}
-          onChange={setSearch}
-          icon={<Search className="size-5" aria-hidden />}
-          containerClassName="min-w-0 flex-[2] shadow-sm shadow-gray-300 border-white"
-        />
-        <button
-          type="button"
-          onClick={() => setFiltersOpen(true)}
-          className="flex h-12 min-w-0 flex-[2] items-center justify-center gap-2 rounded-lg border border-[#175E47] bg-white text-sm font-semibold text-[#175E47] transition-colors hover:bg-[#F5F9F6] cursor-pointer"
-        >
-          <Filter className="size-5" aria-hidden />
-          فیلتر
-        </button>
-        <button
-          type="button"
-          onClick={openRegistration}
-          className="flex h-12 min-w-0 flex-[2] cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#175E47] text-sm font-semibold text-white transition-colors hover:bg-[#1F7E5F]"
-        >
-          <UserRoundPen className="size-5" aria-hidden />
-          ثبت نام حضوری
-        </button>
-      </div>
+      <PageToolbar
+        search={
+          <FloatingLabelSearch
+            id="onsite-register-search"
+            label="جستجو"
+            value={search}
+            onChange={setSearch}
+            icon={<Search className="size-5" aria-hidden />}
+            containerClassName="w-full shadow-sm shadow-gray-300 border-white"
+          />
+        }
+        actions={
+          <>
+            <button
+              type="button"
+              onClick={() => setFiltersOpen(true)}
+              className={cn(
+                pageToolbarActionClass,
+                "border border-[#175E47] bg-white text-[#175E47] hover:bg-[#F5F9F6]",
+              )}
+            >
+              <Filter className="size-5" aria-hidden />
+              فیلتر
+            </button>
+            <button
+              type="button"
+              onClick={openRegistration}
+              className={cn(
+                pageToolbarActionClass,
+                "bg-[#175E47] text-white hover:bg-[#1F7E5F]",
+              )}
+            >
+              <UserRoundPen className="size-5" aria-hidden />
+              ثبت نام حضوری
+            </button>
+          </>
+        }
+      />
 
       <Table data={tableRows} columns={columns} size="lg" className="w-full" />
 
