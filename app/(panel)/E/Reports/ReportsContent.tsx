@@ -6,16 +6,9 @@ import StatisticsPieChart from "@/chart/StatisticsPieChart";
 
 export function ReportsContent() {
   return (
-    <div className="flex w-full flex-col gap-6" dir="rtl">
-      <div className="flex w-full flex-col gap-6 xl:flex-row xl:items-stretch">
-        <div className="min-w-0 flex-1">
-          <StatisticsBarChart />
-        </div>
-        <div className="min-w-0 flex-1">
-          <StatisticsPieChart />
-        </div>
-      </div>
-
+    <div className="flex w-full flex-col gap-6 sm:gap-8" dir="rtl">
+      <StatisticsBarChart />
+      <StatisticsPieChart />
       <StatisticsAreaChart />
     </div>
   );
