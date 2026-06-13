@@ -13,7 +13,6 @@ export function AdminPanelLayoutClient({ children }: { children: ReactNode }) {
   );
 }
 
-/** Alias for admin panel layout — same shell/gate wiring. */
 export function BossPanelLayoutClient({ children }: { children: ReactNode }) {
   return (
     <PanelGate>

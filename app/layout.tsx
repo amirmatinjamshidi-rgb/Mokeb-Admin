@@ -7,8 +7,8 @@ const iranSans500 = localFont({
   src: "../public/fonts/woff2/IRANSansWebFaNum_Medium.woff2",
   weight: "500",
   style: "normal",
-  variable: "--font-iransans-500",
-  display: "swap",
+  variable: "--font-iransans-700",
+  display: "swap",  
 });
 export const metadata: Metadata = {
   title: "موکب",

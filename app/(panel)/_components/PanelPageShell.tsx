@@ -1,11 +1,6 @@
 import type { ReactNode } from "react";
 
 import { cn } from "@admin-kit/shared/lib/utils";
-// import DashboardAreaChart from "@/chart/DashboardAreaChart";
-// import DashboardCapacityStatisticsChart from "@/chart/DashboardCapacityStatisticsChart";
-// import StatisticsAreaChart from "@/chart/StatisticsAreaChart";
-// import StatisticsBarChart from "@/chart/StatisticsBarChart";
-// import StatisticsPieChart from "@/chart/StatisticsPieChart";
 
 type Props = {
   title: string;
@@ -31,13 +26,7 @@ export function PanelPageShell({
         className,
       )}
     >
-      {/* <div>
-        <div className="flex justify-between flex-1">
-          <StatisticsBarChart />
-          <StatisticsPieChart />
-        </div>
-        <StatisticsAreaChart />
-      </div> */}
+     
 
       <h2 className="flex items-center gap-3 text-2xl font-bold leading-8 text-gray-500">
         {icon}
@@ -49,4 +38,4 @@ export function PanelPageShell({
   );
 }
 
-export const panelPageIconClass = "size-6 shrink-0 text-[#D8B648]";
+export const panelPageIconClass = "size-6 shrink-0 stroke-gray";
