@@ -1,13 +1,13 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import type { LucideIcon } from "lucide-react";
+import type { ComponentType } from "react";
 import { Ellipsis } from "lucide-react";
 import { cn } from "@admin-kit/shared/lib/utils";
 
 export type TableActionItem = {
   label: string;
-  icon: LucideIcon;
+  icon: ComponentType<{ className?: string }>;
   onClick?: () => void;
 };
 

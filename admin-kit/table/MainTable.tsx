@@ -51,11 +51,12 @@ function getCellClassName(colClassName?: string) {
     .replace(/\btext-(center|left|right)\b/g, "")
     .trim();
 
-  return cn("min-w-0 w-full truncate text-gray-500", alignment, extras);
+  return cn("w-full shrink-0 truncate text-gray-500", alignment, extras);
 }
 
-function buildGridTemplate(columnCount: number) {
-  return `repeat(${columnCount}, minmax(0, 1fr))`;
+function buildGridTemplate(columnCount: number, size: keyof typeof sizeStyles) {
+  const minColWidth = size === "lg" ? "8rem" : "7rem";
+  return `repeat(${columnCount}, minmax(${minColWidth}, 1fr))`;
 }
 
 export function Table<T>({
@@ -66,18 +67,19 @@ export function Table<T>({
   className,
 }: ResponsiveTableProps<T>) {
   const styles = sizeStyles[size];
-  const gridTemplateColumns = buildGridTemplate(columns.length);
+  const gridTemplateColumns = buildGridTemplate(columns.length, size);
   const rowGridStyle = { gridTemplateColumns };
 
   return (
-    <div
-      className={cn(
-        "mx-auto flex w-full min-h-102 flex-col rounded-xl border border-gray-100 bg-white shadow-md",
-        styles.containerPadding,
-        styles.text,
-        className,
-      )}
-    >
+    <div className="w-full overflow-x-auto">
+      <div
+        className={cn(
+          "mx-auto flex w-full min-w-max min-h-102 flex-col rounded-xl border border-gray-100 bg-white shadow-md",
+          styles.containerPadding,
+          styles.text,
+          className,
+        )}
+      >
       <div
         className={cn(
           "flex w-full items-center",
@@ -143,6 +145,7 @@ export function Table<T>({
           </div>
         ))}
       </div>
+    </div>
     </div>
   );
 }

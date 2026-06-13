@@ -2,35 +2,19 @@
 
 import { useState } from "react";
 
-import {
-  KarvanInformationSection,
-  RepresentativeSection,
-  SettingsSections,
-  UserInfo,
-  type SettingsSectionId,
-} from "@admin-kit/index";
+import { AdminSettingsTabs, type AdminSettingsTabId } from "./AdminSettingsTabs";
+import { CapacityManagementTab } from "./CapacityManagementTab";
+import { ReservationRulesTab } from "./ReservationRulesTab";
 
 export function SettingsPageContent() {
-  const [section, setSection] = useState<SettingsSectionId>("caravan");
+  const [tab, setTab] = useState<AdminSettingsTabId>("capacity");
 
   return (
-    <>
-      <SettingsSections value={section} onValueChange={setSection} />
+    <div className="flex w-full flex-col gap-10">
+      <AdminSettingsTabs value={tab} onValueChange={setTab} />
 
-      {section === "caravan" ? (
-        <div className="flex flex-col gap-4">
-          <KarvanInformationSection />
-          <RepresentativeSection />
-        </div>
-      ) : null}
-
-      {section === "user" ? <UserInfo phone="09120000000" /> : null}
-
-      {section === "documents" ? (
-        <p className="text-sm text-[#61756F]">
-          بخش مستندات — محتوای ادمین را اینجا اضافه کنید.
-        </p>
-      ) : null}
-    </>
+      {tab === "capacity" ? <CapacityManagementTab /> : null}
+      {tab === "rules" ? <ReservationRulesTab /> : null}
+    </div>
   );
 }
