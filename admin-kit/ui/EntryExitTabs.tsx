@@ -19,7 +19,7 @@ export function EntryExitTabs({ value, onValueChange, className }: Props) {
   return (
     <div className={cn("w-full", className)} dir="rtl">
       <div
-        className="flex items-end gap-8 border-b border-[#DFC369]/40"
+        className="flex h-12 w-full items-end border-b-2 border-[#DFC369]"
         role="tablist"
         aria-label="ورود و خروج"
       >
@@ -34,19 +34,14 @@ export function EntryExitTabs({ value, onValueChange, className }: Props) {
               id={`entry-exit-tab-${tab.id}`}
               onClick={() => onValueChange(tab.id)}
               className={cn(
-                "bg-transparent pb-3 pt-2 text-sm font-medium leading-none outline-none transition-colors",
+                "flex h-12 min-w-0 flex-1 flex-col items-center justify-start px-5 pt-4",
+                "text-sm font-medium leading-none outline-none transition-colors",
+                "border-b-4 border-transparent -mb-0.5",
                 "hover:text-[#175E47] focus-visible:ring-2 focus-visible:ring-[#DFC369]/60 focus-visible:ring-offset-2",
-                isActive ? "text-[#175E47]" : "text-[#61756F]",
+                isActive ? "border-[#DFC369] text-[#175E47]" : "text-[#61756F]",
               )}
             >
-              <span
-                className={cn(
-                  "inline-block border-b-[3px] border-transparent pb-1",
-                  isActive && "border-[#DFC369]",
-                )}
-              >
-                {tab.label}
-              </span>
+              {tab.label}
             </button>
           );
         })}
