@@ -25,10 +25,11 @@ export type DateCarouselProps = {
   getDateStats?: (date: Date) => DateCarouselStats;
   daysCount?: number;
   startDate?: Date;
+  /** When set, each slide takes equal share of carousel width (e.g. 3 on mobile). */
+  visibleSlides?: number;
   className?: string;
 };
 
-// Adjusted to handle larger number text without wrapping issues
 const SLIDE_SIZE = 155;
 
 const ARROW_CLASS =
@@ -83,12 +84,12 @@ function DateCarouselItem({
         {formatCarouselDateLabel(date)}
       </span>
 
-      {/* Row 2: Metrics Layout */}
+     
       <div
         className="flex w-full items-center justify-between px-0.5"
         dir="rtl"
       >
-        {/* Parentheses with increased text size (text-base) */}
+     
         <div className="flex items-center gap-1 text-base font-bold" dir="ltr">
           <span className={cn("text-sm font-normal", mutedTextClass)}>(</span>
           <span className="text-[#8F2346]">
@@ -116,6 +117,7 @@ export function DateCarousel({
   getDateStats = defaultDateCarouselStats,
   daysCount = DATE_CAROUSEL_DAYS,
   startDate,
+  visibleSlides,
   className,
 }: DateCarouselProps) {
   const dates = useMemo(
@@ -177,7 +179,11 @@ export function DateCarousel({
               <div
                 key={toDateKey(date)}
                 className="flex h-[104px] shrink-0 items-center justify-center px-1"
-                style={{ flexBasis: SLIDE_SIZE }}
+                style={
+                  visibleSlides
+                    ? { flex: `0 0 ${100 / visibleSlides}%` }
+                    : { flexBasis: SLIDE_SIZE }
+                }
               >
                 <DateCarouselItem
                   date={date}
