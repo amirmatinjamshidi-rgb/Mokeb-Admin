@@ -25,7 +25,12 @@ function ValueRow({
 }
 
 function Divider() {
-  return <div className="mx-4 h-12 w-px shrink-0 bg-gray-200" aria-hidden />;
+  return (
+    <div
+      className="mx-4 hidden h-12 w-px shrink-0 bg-gray-200 sm:block"
+      aria-hidden
+    />
+  );
 }
 
 export function CapacitySummaryBar() {
@@ -33,14 +38,17 @@ export function CapacitySummaryBar() {
     <div
       className={cn(
         SETTINGS_PANEL_CLASS,
-        "flex h-[110px] w-full items-center justify-center px-6 py-5 sm:px-[72px]",
+        "flex w-full flex-col items-center justify-center gap-8 px-6 py-6 sm:h-[110px] sm:flex-row sm:gap-0 sm:py-5 sm:px-[72px]",
       )}
       dir="rtl"
     >
       {MOCK_CAPACITY_SEGMENTS.map((segment, index) => (
-        <div key={segment.title} className="flex items-center">
+        <div
+          key={segment.title}
+          className="flex w-full flex-col items-center sm:w-auto sm:flex-row"
+        >
           {index > 0 ? <Divider /> : null}
-          <div className="flex flex-col items-center justify-center gap-4 px-4">
+          <div className="flex flex-col items-center justify-center gap-4 px-4 text-center">
             <ValueRow
               partA={segment.partA}
               partB={segment.partB}

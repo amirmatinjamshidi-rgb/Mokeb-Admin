@@ -7,8 +7,10 @@ import { Plus, Search } from "lucide-react";
 
 import {
   FloatingLabelSearch,
+  PageToolbar,
   Table,
   TableRowActionsMenu,
+  pageToolbarActionClass,
   type Column,
 } from "@admin-kit/index";
 import { toPersianDigits } from "@admin-kit/shared/lib/format";
@@ -166,25 +168,31 @@ export function CapacityManagementTab() {
     <div className="flex w-full flex-col gap-8">
       <CapacitySummaryBar />
 
-      <div className="flex w-full flex-col gap-4 sm:flex-row sm:items-stretch">
-        <FloatingLabelSearch
-          id="capacity-search"
-          label="جستجو"
-          value={search}
-          onChange={setSearch}
-          icon={<Search className="size-5" aria-hidden />}
-          containerClassName="min-w-0 flex-[2] shadow-sm shadow-gray-300 border-white"
-        />
-
-        <button
-          type="button"
-          onClick={() => setAddOpen(true)}
-          className="flex h-12 min-w-0 flex-1 items-center justify-center gap-2 rounded-lg bg-[#175E47] text-sm font-semibold text-white transition-colors hover:bg-[#1F7E5F]"
-        >
-          <Plus className="size-5" aria-hidden />
-          افزودن ظرفیت
-        </button>
-      </div>
+      <PageToolbar
+        search={
+          <FloatingLabelSearch
+            id="capacity-search"
+            label="جستجو"
+            value={search}
+            onChange={setSearch}
+            icon={<Search className="size-5" aria-hidden />}
+            containerClassName="w-full shadow-sm shadow-gray-300 border-white"
+          />
+        }
+        actions={
+          <button
+            type="button"
+            onClick={() => setAddOpen(true)}
+            className={cn(
+              pageToolbarActionClass,
+              "bg-[#175E47] text-white hover:bg-[#1F7E5F]",
+            )}
+          >
+            <Plus className="size-5" aria-hidden />
+            افزودن ظرفیت
+          </button>
+        }
+      />
 
       <Table data={tableRows} columns={columns} size="lg" className="w-full" />
 
